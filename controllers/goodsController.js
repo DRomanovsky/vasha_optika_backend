@@ -21,13 +21,16 @@ class GoodsController{
         }
     }
     async getAll(req,res){
-        let {goodsCategoryId} = req.query
-        let goods
+        let {goodsCategoryId, limit, page} = req.query
+        page = page || 1
+        limit = limit || 9
+        let offset = page * limit - limit
+        let goods;
         if(!goodsCategoryId){
             goods = await Goods.findAndCountAll()
         }
         if(goodsCategoryId){
-            goods = await Goods.findAndCountAll({where:{goodsCategoryId}})
+            goods = await Goods.findAndCountAll({where:{goodsCategoryId}, limit, offset})
         }
         return res.json(goods)
     }
