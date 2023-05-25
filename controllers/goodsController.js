@@ -22,8 +22,8 @@ class GoodsController{
     }
     async getAll(req,res){
         let {goodsCategoryId, limit, page} = req.query
-        limit = limit || 6
-        page = page || 1
+        limit = limit
+        page = page
         let offset = page * limit - limit
         let goods
         if (page == null && limit == null){
