@@ -27,7 +27,7 @@ class GoodsController{
         let offset = page * limit - limit
         let goods
         if(!goodsCategoryId){
-            goods = await Goods.findAndCountAll()
+            goods = await Goods.findAndCountAll({limit, offset})
         }
         if(goodsCategoryId){
             goods = await Goods.findAndCountAll({where:{goodsCategoryId}, limit, offset})
