@@ -26,7 +26,7 @@ class GoodsController{
         page = page
         let offset = page * limit - limit
         let goods
-        if (page == null && limit == null){
+        if (page == 0 && limit == 0){
             goods = await Goods.findAndCountAll()
         }
         if(!goodsCategoryId){
